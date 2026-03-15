@@ -1,0 +1,212 @@
+/* БАЗОВЫЕ СТИЛИ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #0f0f0f;
+    color: #f0f0f0;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+a {
+    color: #f0f0f0;
+    text-decoration: none;
+}
+
+h1, h2, h3 {
+    font-weight: 700;
+}
+
+
+/* НАВИГАЦИЯ */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    background-color: #1a1a1a;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-logo {
+    font-size: 22px;
+    font-weight: 700;
+    color: #7c6ef5;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: #f0f0f0;
+    font-size: 15px;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #7c6ef5;
+}
+/* HERO СЕКЦИЯ */
+#hero {
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 100%);
+}
+
+#hero h1 {
+    font-size: 48px;
+    max-width: 800px;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+#hero p {
+    font-size: 20px;
+    color: #aaaaaa;
+    margin-bottom: 40px;
+}
+
+.btn {
+    background-color: #7c6ef5;
+    color: #ffffff;
+    padding: 14px 36px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.3s;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #6254d4;
+}/* УСЛУГИ */
+#leistungen {
+    padding: 80px 60px;
+    background-color: #111111;
+    text-align: center;
+}
+
+#leistungen h2 {
+    font-size: 36px;
+    margin-bottom: 50px;
+    color: #ffffff;
+}
+
+.cards {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.card {
+    background-color: #1e1e1e;
+    border: 1px solid #2e2e2e;
+    border-radius: 12px;
+    padding: 36px 30px;
+    max-width: 280px;
+    text-align: left;
+    transition: transform 0.3s, border-color 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    border-color: #7c6ef5;
+}
+
+.card h3 {
+    font-size: 20px;
+    margin-bottom: 12px;
+    color: #ffffff;
+}
+/* WARUM ICH */
+#warum-ich {
+    padding: 80px 60px;
+    background-color: #0f0f0f;
+    text-align: center;
+}
+
+#warum-ich h2 {
+    font-size: 36px;
+    margin-bottom: 40px;
+}
+
+.vorteile {
+    list-style: none;
+    display: inline-block;
+    text-align: left;
+}
+
+.vorteile li {
+    font-size: 18px;
+    color: #cccccc;
+    margin-bottom: 16px;
+}
+
+/* КОНТАКТ */
+#kontakt {
+    padding: 80px 60px;
+    background-color: #111111;
+    text-align: center;
+}
+
+#kontakt h2 {
+    font-size: 36px;
+    margin-bottom: 40px;
+}
+
+.kontakt-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 500px;
+    margin: 0 auto 40px auto;
+}
+
+.kontakt-form input,
+.kontakt-form textarea {
+    background-color: #1e1e1e;
+    border: 1px solid #2e2e2e;
+    border-radius: 8px;
+    padding: 14px;
+    color: #f0f0f0;
+    font-size: 15px;
+    font-family: inherit;
+}
+
+.kontakt-form input:focus,
+.kontakt-form textarea:focus {
+    outline: none;
+    border-color: #7c6ef5;
+}
+
+.kontakt-links {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.kontakt-links a {
+    color: #
+.card p {
+    color: #aaaaaa;
+    font-size: 15px;
+}
