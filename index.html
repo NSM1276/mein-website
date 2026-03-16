@@ -82,6 +82,7 @@
     <section id="warum-ich">
         <h2>Warum ausgerechnet ich?</h2>
         <div class="about-grid">
+            <img src="nasim.jpg" alt="Nasim Nuridinov" class="about-foto">
             <div class="about-text">
                 <p class="about-intro">"Ich bin kein Programmierer der im Büro sitzt und wartet. Ich komme zu Ihnen."</p>
                 <p>Ich habe über 15 Jahre in Hotels, Restaurants und im Vertrieb gearbeitet. Ich weiß wie wichtig der erste Eindruck ist — ob an der Rezeption oder im Internet.</p>
@@ -178,7 +179,6 @@
     <button id="back-to-top">↑</button>
 
     <script>
-    // КНОПКА НАВЕРХ
     const btn = document.getElementById('back-to-top');
     window.addEventListener('scroll', () => {
         btn.style.display = window.scrollY > 400 ? 'block' : 'none';
@@ -187,7 +187,6 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // СЧЁТЧИК
     const zahlen = document.querySelectorAll('.stat-zahl');
     zahlen.forEach(zahl => {
         const target = +zahl.getAttribute('data-target');
@@ -202,7 +201,6 @@
         }, 30);
     });
 
-    // ПЛАВНОЕ ПОЯВЛЕНИЕ
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -211,12 +209,11 @@
         });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.card, .grund, .preis-card, .stat, .garantie, .about-text, .vorteile li').forEach(el => {
+    document.querySelectorAll('.card, .grund, .preis-card, .stat, .garantie, .about-grid, .vorteile li').forEach(el => {
         el.classList.add('fade-in');
         observer.observe(el);
     });
 
-    // ПЕЧАТАЮЩИЙСЯ ТЕКСТ
     const texte = [
         'Ihr Unternehmen existiert. Aber findet man Sie im Internet?',
         'Kein Website? Ihre Kunden suchen Sie — und finden jemand anderen.',
@@ -246,7 +243,6 @@
     }
     tippen();
 
-    // ПОДСВЕТКА МЕНЮ
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-links a');
     window.addEventListener('scroll', () => {
