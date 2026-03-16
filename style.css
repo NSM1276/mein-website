@@ -39,6 +39,7 @@ nav {
     position: sticky;
     top: 0;
     z-index: 1000;
+    gap: 20px;
 }
 
 .nav-logo {
@@ -67,6 +68,37 @@ nav {
 .nav-links a.active {
     color: #ff6b2b;
     font-weight: 600;
+}
+
+/* ПЕРЕКЛЮЧАТЕЛЬ ЯЗЫКА */
+.lang-switcher {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.lang-btn {
+    background: none;
+    border: 1px solid #333333;
+    color: #888888;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.3s;
+}
+
+.lang-btn:hover {
+    border-color: #ff6b2b;
+    color: #ff6b2b;
+}
+
+.lang-btn.active {
+    background-color: #ff6b2b;
+    border-color: #ff6b2b;
+    color: #ffffff;
 }
 
 /* БУРГЕР */
@@ -657,10 +689,6 @@ footer {
         padding: 16px 20px;
     }
 
-    .burger {
-        display: flex;
-    }
-
     .nav-links {
         display: none;
         flex-direction: column;
@@ -683,6 +711,19 @@ footer {
     .nav-links a {
         font-size: 24px;
         font-weight: 600;
+    }
+
+    .burger {
+        display: flex;
+    }
+
+    .lang-switcher {
+        gap: 4px;
+    }
+
+    .lang-btn {
+        font-size: 11px;
+        padding: 3px 8px;
     }
 
     #hero h1 {
