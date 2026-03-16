@@ -38,7 +38,7 @@ nav {
     background-color: #1a1a1a;
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 1000;
 }
 
 .nav-logo {
@@ -69,6 +69,39 @@ nav {
     font-weight: 600;
 }
 
+/* БУРГЕР КНОПКА */
+.burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    z-index: 1001;
+}
+
+.burger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #f0f0f0;
+    border-radius: 3px;
+    transition: all 0.3s;
+}
+
+.burger.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.burger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.burger.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
 /* HERO */
 #hero {
     min-height: 90vh;
@@ -79,6 +112,25 @@ nav {
     text-align: center;
     padding: 60px 20px;
     background: linear-gradient(135deg, #0f0f0f 0%, #1a1208 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+#particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #hero h1 {
@@ -114,7 +166,7 @@ nav {
     border-radius: 8px;
     font-size: 16px;
     font-weight: 600;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, box-shadow 0.3s;
     border: none;
     cursor: pointer;
     display: inline-block;
@@ -122,6 +174,14 @@ nav {
 
 .btn:hover {
     background-color: #e55a1f;
+}
+
+.btn.glow {
+    box-shadow: 0 0 20px rgba(255, 107, 43, 0.4);
+}
+
+.btn.glow:hover {
+    box-shadow: 0 0 35px rgba(255, 107, 43, 0.7);
 }
 
 /* ГАРАНТИИ */
@@ -170,11 +230,12 @@ nav {
     padding: 30px;
     max-width: 240px;
     text-align: left;
-    transition: border-color 0.3s;
+    transition: border-color 0.3s, transform 0.3s;
 }
 
 .grund:hover {
     border-color: #ff6b2b;
+    transform: translateY(-4px);
 }
 
 .grund-nr {
@@ -268,6 +329,7 @@ nav {
     object-fit: cover;
     border: 3px solid #ff6b2b;
     flex-shrink: 0;
+    box-shadow: 0 0 30px rgba(255, 107, 43, 0.3);
 }
 
 .about-intro {
@@ -372,6 +434,7 @@ nav {
 
 .preis-card.featured {
     border-color: #ff6b2b;
+    box-shadow: 0 0 30px rgba(255, 107, 43, 0.15);
 }
 
 .badge {
@@ -498,12 +561,14 @@ footer {
     font-size: 20px;
     cursor: pointer;
     display: none;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, box-shadow 0.3s;
     z-index: 999;
+    box-shadow: 0 0 15px rgba(255, 107, 43, 0.4);
 }
 
 #back-to-top:hover {
     background-color: #e55a1f;
+    box-shadow: 0 0 25px rgba(255, 107, 43, 0.7);
 }
 
 /* АНИМАЦИИ */
@@ -524,16 +589,32 @@ footer {
         padding: 16px 20px;
     }
 
-    .nav-logo {
-        font-size: 16px;
+    .burger {
+        display: flex;
     }
 
     .nav-links {
-        gap: 12px;
+        display: none;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: #1a1a1a;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
+        z-index: 999;
+    }
+
+    .nav-links.open {
+        display: flex;
     }
 
     .nav-links a {
-        font-size: 12px;
+        font-size: 24px;
+        font-weight: 600;
     }
 
     #hero h1 {
