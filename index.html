@@ -180,8 +180,55 @@
         </div>
     </section>
 
+    <!-- FOOTER -->
     <footer>
-        <p>© 2025 Nasim Nuridinov — Webseiten für kleine Unternehmen in Wien</p>
+        <div class="footer-bottom">
+            <p>© 2025 Nasim Nuridinov EU · Wien
+                <span class="footer-sep">·</span>
+                <button class="impressum-toggle" onclick="toggleImpressum()">Impressum</button>
+                <span class="footer-sep">·</span>
+                <button class="impressum-toggle" onclick="toggleDatenschutz()">Datenschutz</button>
+            </p>
+        </div>
+
+        <!-- IMPRESSUM АККОРДЕОН -->
+        <div class="impressum-box" id="impressum-box">
+            <div class="impressum-content">
+                <h4>Impressum</h4>
+                <p>
+                    <strong>Nasim Nuridinov EU</strong><br>
+                    Tscherttegasse 39/66/28, 1120 Wien, Österreich<br>
+                    📧 nasim2131@gmail.com &nbsp;|&nbsp; 📞 +43 677 64292055<br>
+                    ATU-Nr.: ATU80802758<br>
+                    Unternehmensgegenstand: Webdesign & Webentwicklung<br>
+                    Behörde: Magistrat der Stadt Wien<br>
+                    Mitglied der WKO Wien
+                </p>
+                <p class="impressum-hinweis">
+                    Alle Inhalte dieser Website wurden mit größter Sorgfalt erstellt.
+                    Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte
+                    wird keine Gewähr übernommen.
+                </p>
+            </div>
+        </div>
+
+        <!-- DATENSCHUTZ АККОРДЕОН -->
+        <div class="impressum-box" id="datenschutz-box">
+            <div class="impressum-content">
+                <h4>Datenschutz</h4>
+                <p>
+                    Diese Website erhebt keine personenbezogenen Daten ohne Ihre ausdrückliche Zustimmung.
+                    Das Kontaktformular dient ausschließlich der direkten Kommunikation mit dem Anbieter.
+                    Ihre Daten werden nicht an Dritte weitergegeben.
+                </p>
+                <p>
+                    Verantwortlicher im Sinne der DSGVO:<br>
+                    <strong>Nasim Nuridinov EU</strong><br>
+                    Tscherttegasse 39/66/28, 1120 Wien<br>
+                    📧 nasim2131@gmail.com
+                </p>
+            </div>
+        </div>
     </footer>
 
     <button id="back-to-top">↑</button>
@@ -200,6 +247,21 @@
         const burger = document.getElementById('burger');
         nav.classList.remove('open');
         burger.classList.remove('active');
+    }
+
+    // IMPRESSUM АККОРДЕОН
+    function toggleImpressum() {
+        const box = document.getElementById('impressum-box');
+        const datenschutz = document.getElementById('datenschutz-box');
+        datenschutz.classList.remove('open');
+        box.classList.toggle('open');
+    }
+
+    function toggleDatenschutz() {
+        const box = document.getElementById('datenschutz-box');
+        const impressum = document.getElementById('impressum-box');
+        impressum.classList.remove('open');
+        box.classList.toggle('open');
     }
 
     // КНОПКА НАВЕРХ
