@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nasim Nuridinov — Webseiten für kleine Unternehmen in Wien</title>
+    <meta name="description" content="Nasim Nuridinov — professionelle Websites für kleine Betriebe in Wien. Persönlich, schnell, Fixpreis ab 500€.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌐</text></svg>">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -22,7 +24,7 @@
             <button onclick="setLang('ru')" class="lang-btn" id="lang-ru">RU</button>
             <button onclick="setLang('en')" class="lang-btn" id="lang-en">EN</button>
         </div>
-        <button class="burger" id="burger" onclick="toggleMenu()">
+        <button class="burger" id="burger" onclick="toggleMenu()" aria-label="Menü öffnen">
             <span></span>
             <span></span>
             <span></span>
@@ -166,19 +168,22 @@
     <section id="kontakt">
         <h2 data-i18n="kon_title">Lassen Sie uns reden — unverbindlich</h2>
         <p class="section-sub" data-i18n="kon_sub">Ich melde mich innerhalb von 24 Stunden. Versprochen.</p>
-        <form class="kontakt-form">
-            <input type="text" data-i18n-placeholder="kon_name" placeholder="Ihr Name" required>
-            <input type="email" data-i18n-placeholder="kon_email" placeholder="Ihre E-Mail" required>
-            <input type="tel" data-i18n-placeholder="kon_tel" placeholder="Ihre Telefonnummer">
-            <select>
+        <form class="kontakt-form" id="kontakt-form" action="https://formspree.io/f/xgonnepd" method="POST">
+            <input type="text" name="name" data-i18n-placeholder="kon_name" placeholder="Ihr Name" required>
+            <input type="email" name="email" data-i18n-placeholder="kon_email" placeholder="Ihre E-Mail" required>
+            <input type="tel" name="phone" data-i18n-placeholder="kon_tel" placeholder="Ihre Telefonnummer">
+            <select name="package">
                 <option value="" data-i18n="kon_select">Welches Paket interessiert Sie?</option>
                 <option value="basis">Basis — 500€</option>
                 <option value="komplett">Komplett — 1.100€</option>
                 <option value="frage" data-i18n="kon_frage">Ich habe noch eine Frage</option>
             </select>
-            <textarea data-i18n-placeholder="kon_msg" placeholder="Erzählen Sie mir kurz von Ihrem Unternehmen" rows="4"></textarea>
+            <textarea name="message" data-i18n-placeholder="kon_msg" placeholder="Erzählen Sie mir kurz von Ihrem Unternehmen" rows="4"></textarea>
             <button type="submit" class="btn glow" data-i18n="kon_btn">Nachricht senden →</button>
         </form>
+        <div id="form-success" style="display:none; color:#ff6b2b; font-size:18px; font-weight:600; margin-top:20px;">
+            ✅ Nachricht gesendet! Ich melde mich bald.
+        </div>
         <div class="kontakt-links">
             <a href="mailto:nasim2131@gmail.com">📧 nasim2131@gmail.com</a>
             <a href="https://wa.me/4367764292055">💬 WhatsApp</a>
@@ -187,7 +192,7 @@
 
     <footer>
         <div class="footer-bottom">
-            <p>© 2025 Nasim Nuridinov EU · Wien
+            <p>© 2026 Nasim Nuridinov EU · Wien
                 <span class="footer-sep">·</span>
                 <button class="impressum-toggle" onclick="toggleImpressum()" data-i18n="imp_btn">Impressum</button>
                 <span class="footer-sep">·</span>
@@ -453,6 +458,7 @@
 
     function setLang(lang) {
         currentLang = lang;
+        document.documentElement.lang = lang;
         const t = translations[lang];
 
         // Обновляем текст
@@ -539,18 +545,26 @@
 
     // СЧЁТЧИК
     const zahlen = document.querySelectorAll('.stat-zahl');
-    zahlen.forEach(zahl => {
-        const target = +zahl.getAttribute('data-target');
-        const interval = setInterval(() => {
-            const current = +zahl.innerText;
-            if (current < target) {
-                zahl.innerText = Math.ceil(current + target / 50);
-            } else {
-                zahl.innerText = target;
-                clearInterval(interval);
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const zahl = entry.target;
+                const target = +zahl.getAttribute('data-target');
+                zahl.innerText = '0';
+                const interval = setInterval(() => {
+                    const current = +zahl.innerText;
+                    if (current < target) {
+                        zahl.innerText = Math.ceil(current + target / 50);
+                    } else {
+                        zahl.innerText = target;
+                        clearInterval(interval);
+                    }
+                }, 30);
+                counterObserver.unobserve(zahl);
             }
-        }, 30);
-    });
+        });
+    }, { threshold: 0.5 });
+    zahlen.forEach(zahl => counterObserver.observe(zahl));
 
     // ПЛАВНОЕ ПОЯВЛЕНИЕ
     const observer = new IntersectionObserver((entries) => {
@@ -582,6 +596,21 @@
                 link.classList.add('active');
             }
         });
+    });
+
+    // ФОРМА
+    const form = document.getElementById('kontakt-form');
+    const formSuccess = document.getElementById('form-success');
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const data = new FormData(form);
+        const res = await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
+        if (res.ok) {
+            form.style.display = 'none';
+            formSuccess.style.display = 'block';
+        } else {
+            alert('Fehler beim Senden. Bitte versuchen Sie es erneut.');
+        }
     });
 
     // ЧАСТИЦЫ
