@@ -253,13 +253,25 @@ nav {
 }
 
 .about-grid {
-    max-width: 700px;
+    max-width: 800px;
     margin: 0 auto;
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
     text-align: left;
 }
 
+.about-foto {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #ff6b2b;
+    flex-shrink: 0;
+}
+
 .about-intro {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 700;
     color: #ff6b2b;
     margin-bottom: 24px;
@@ -561,7 +573,13 @@ footer {
     }
 
     .about-grid {
-        text-align: left;
-        padding: 0 10px;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .about-foto {
+        width: 150px;
+        height: 150px;
     }
 }
