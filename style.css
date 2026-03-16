@@ -8,7 +8,7 @@
 body {
     background-color: #0f0f0f;
     color: #f0f0f0;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 16px;
     line-height: 1.6;
 }
@@ -21,7 +21,6 @@ a {
 h1, h2, h3 {
     font-weight: 700;
 }
-
 
 /* НАВИГАЦИЯ */
 nav {
@@ -56,7 +55,8 @@ nav {
 .nav-links a:hover {
     color: #7c6ef5;
 }
-/* HERO СЕКЦИЯ */
+
+/* HERO */
 #hero {
     min-height: 90vh;
     display: flex;
@@ -95,7 +95,9 @@ nav {
 
 .btn:hover {
     background-color: #6254d4;
-}/* УСЛУГИ */
+}
+
+/* УСЛУГИ */
 #leistungen {
     padding: 80px 60px;
     background-color: #111111;
@@ -135,6 +137,12 @@ nav {
     margin-bottom: 12px;
     color: #ffffff;
 }
+
+.card p {
+    color: #aaaaaa;
+    font-size: 15px;
+}
+
 /* WARUM ICH */
 #warum-ich {
     padding: 80px 60px;
@@ -157,6 +165,118 @@ nav {
     font-size: 18px;
     color: #cccccc;
     margin-bottom: 16px;
+}
+
+/* ЦЕНЫ */
+#preise {
+    padding: 80px 60px;
+    background-color: #0f0f0f;
+    text-align: center;
+}
+
+#preise h2 {
+    font-size: 36px;
+    margin-bottom: 50px;
+}
+
+.preise-cards {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.preis-card {
+    background-color: #1e1e1e;
+    border: 1px solid #2e2e2e;
+    border-radius: 16px;
+    padding: 40px 36px;
+    max-width: 300px;
+    text-align: left;
+    position: relative;
+}
+
+.preis-card.featured {
+    border-color: #7c6ef5;
+}
+
+.badge {
+    background-color: #7c6ef5;
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 16px;
+}
+
+.preis-card h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.preis {
+    font-size: 48px;
+    font-weight: 900;
+    color: #7c6ef5;
+    margin-bottom: 24px;
+}
+
+.preis-card ul {
+    list-style: none;
+    margin-bottom: 30px;
+}
+
+.preis-card ul li {
+    color: #cccccc;
+    margin-bottom: 10px;
+    font-size: 15px;
+}
+
+.preis-card .btn {
+    width: 100%;
+    text-align: center;
+    display: block;
+}
+
+/* СЧЁТЧИК */
+#stats {
+    padding: 80px 60px;
+    background-color: #111111;
+    text-align: center;
+}
+
+.stats-grid {
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+    flex-wrap: wrap;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-zahl {
+    font-size: 64px;
+    font-weight: 900;
+    color: #7c6ef5;
+    line-height: 1;
+}
+
+.stat-plus {
+    font-size: 36px;
+    font-weight: 700;
+    color: #7c6ef5;
+}
+
+.stat p {
+    color: #aaaaaa;
+    margin-top: 8px;
+    font-size: 16px;
 }
 
 /* КОНТАКТ */
@@ -205,8 +325,42 @@ nav {
 }
 
 .kontakt-links a {
-    color: #
-.card p {
-    color: #aaaaaa;
-    font-size: 15px;
+    color: #7c6ef5;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.kontakt-links a:hover {
+    color: #ffffff;
+}
+
+/* FOOTER */
+footer {
+    background-color: #0a0a0a;
+    text-align: center;
+    padding: 24px;
+    color: #555555;
+    font-size: 14px;
+}
+
+/* КНОПКА НАВЕРХ */
+#back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #7c6ef5;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+    cursor: pointer;
+    display: none;
+    transition: background-color 0.3s;
+    z-index: 999;
+}
+
+#back-to-top:hover {
+    background-color: #6254d4;
 }
