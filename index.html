@@ -11,18 +11,26 @@
 
     <nav>
         <div class="nav-logo">Nasim Nuridinov</div>
-        <ul class="nav-links">
-            <li><a href="#leistungen">Leistungen</a></li>
-            <li><a href="#warum-ich">Warum ich</a></li>
-            <li><a href="#preise">Preise</a></li>
-            <li><a href="#kontakt">Kontakt</a></li>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#leistungen" onclick="closeMenu()">Leistungen</a></li>
+            <li><a href="#warum-ich" onclick="closeMenu()">Warum ich</a></li>
+            <li><a href="#preise" onclick="closeMenu()">Preise</a></li>
+            <li><a href="#kontakt" onclick="closeMenu()">Kontakt</a></li>
         </ul>
+        <button class="burger" id="burger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </nav>
 
     <section id="hero">
-        <h1></h1>
-        <p>Ich erstelle professionelle Websites für kleine Betriebe in Wien — persönlich, schnell und ohne Stress für Sie.</p>
-        <a href="#kontakt" class="btn">Kostenloses Gespräch vereinbaren →</a>
+        <canvas id="particles"></canvas>
+        <div class="hero-content">
+            <h1></h1>
+            <p>Ich erstelle professionelle Websites für kleine Betriebe in Wien — persönlich, schnell und ohne Stress für Sie.</p>
+            <a href="#kontakt" class="btn glow">Kostenloses Gespräch vereinbaren →</a>
+        </div>
     </section>
 
     <section id="garantien">
@@ -164,7 +172,7 @@
                 <option value="frage">Ich habe noch eine Frage</option>
             </select>
             <textarea placeholder="Erzählen Sie mir kurz von Ihrem Unternehmen" rows="4"></textarea>
-            <button type="submit" class="btn">Nachricht senden →</button>
+            <button type="submit" class="btn glow">Nachricht senden →</button>
         </form>
         <div class="kontakt-links">
             <a href="mailto:nasim2131@gmail.com">📧 nasim2131@gmail.com</a>
@@ -179,6 +187,22 @@
     <button id="back-to-top">↑</button>
 
     <script>
+    // БУРГЕР МЕНЮ
+    function toggleMenu() {
+        const nav = document.getElementById('nav-links');
+        const burger = document.getElementById('burger');
+        nav.classList.toggle('open');
+        burger.classList.toggle('active');
+    }
+
+    function closeMenu() {
+        const nav = document.getElementById('nav-links');
+        const burger = document.getElementById('burger');
+        nav.classList.remove('open');
+        burger.classList.remove('active');
+    }
+
+    // КНОПКА НАВЕРХ
     const btn = document.getElementById('back-to-top');
     window.addEventListener('scroll', () => {
         btn.style.display = window.scrollY > 400 ? 'block' : 'none';
@@ -187,6 +211,7 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
+    // СЧЁТЧИК
     const zahlen = document.querySelectorAll('.stat-zahl');
     zahlen.forEach(zahl => {
         const target = +zahl.getAttribute('data-target');
@@ -201,6 +226,7 @@
         }, 30);
     });
 
+    // ПЛАВНОЕ ПОЯВЛЕНИЕ
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -214,6 +240,7 @@
         observer.observe(el);
     });
 
+    // ПЕЧАТАЮЩИЙСЯ ТЕКСТ
     const texte = [
         'Ihr Unternehmen existiert. Aber findet man Sie im Internet?',
         'Kein Website? Ihre Kunden suchen Sie — und finden jemand anderen.',
@@ -243,6 +270,7 @@
     }
     tippen();
 
+    // ПОДСВЕТКА МЕНЮ
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-links a');
     window.addEventListener('scroll', () => {
@@ -259,6 +287,45 @@
             }
         });
     });
+
+    // ЧАСТИЦЫ
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    const particles = [];
+    for (let i = 0; i < 60; i++) {
+        particles.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            r: Math.random() * 2 + 1,
+            dx: (Math.random() - 0.5) * 0.5,
+            dy: (Math.random() - 0.5) * 0.5,
+            alpha: Math.random() * 0.5 + 0.2
+        });
+    }
+
+    function drawParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => {
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255, 107, 43, ${p.alpha})`;
+            ctx.fill();
+            p.x += p.dx;
+            p.y += p.dy;
+            if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+            if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+        });
+        requestAnimationFrame(drawParticles);
+    }
+    drawParticles();
     </script>
 
 </body>
