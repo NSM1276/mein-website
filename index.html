@@ -8,6 +8,31 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌐</text></svg>">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        #audio-btn {
+            position: fixed;
+            bottom: 80px;
+            right: 24px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255,107,43,0.15);
+            border: 1px solid rgba(255,107,43,0.4);
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s, transform 0.2s;
+            backdrop-filter: blur(6px);
+        }
+        #audio-btn:hover {
+            background: rgba(255,107,43,0.35);
+            transform: scale(1.1);
+        }
+    </style>
 </head>
 <body>
 
@@ -23,6 +48,8 @@
             <button onclick="setLang('de')" class="lang-btn active" id="lang-de">DE</button>
             <button onclick="setLang('ru')" class="lang-btn" id="lang-ru">RU</button>
             <button onclick="setLang('en')" class="lang-btn" id="lang-en">EN</button>
+            <button onclick="setLang('tr')" class="lang-btn" id="lang-tr">TR</button>
+            <button onclick="setLang('sr')" class="lang-btn" id="lang-sr">SR</button>
         </div>
         <button class="burger" id="burger" onclick="toggleMenu()" aria-label="Menü öffnen">
             <span></span>
@@ -239,6 +266,7 @@
     </footer>
 
     <button id="back-to-top">↑</button>
+    <button id="audio-btn" onclick="toggleAudio()" title="Ambient sound">🔇</button>
 
     <script>
     // ПЕРЕВОДЫ
@@ -446,6 +474,142 @@
                 "No website? Your customers are searching — and finding your competitors.",
                 "I'll create your website — personal, fast, fair."
             ]
+        },
+        tr: {
+            nav_leistungen: "Hizmetler",
+            nav_warum: "Neden ben",
+            nav_preise: "Fiyatlar",
+            nav_kontakt: "İletişim",
+            hero_sub: "Viyana'daki küçük işletmeler için profesyonel web siteleri oluşturuyorum — kişisel, hızlı ve stressiz.",
+            hero_btn: "Ücretsiz görüşme ayarla →",
+            g1: "✅ Size kişisel olarak geliyorum",
+            g2: "✅ 7–10 iş günü içinde hazır",
+            g3: "✅ Sabit fiyat — sürpriz yok",
+            g4: "✅ Her zaman ulaşılabilir",
+            fw_title: "Bu kimin için?",
+            fw_sub: "Küçük işletmelerle çalışıyorum — büyük şirketlerle değil.",
+            fw1_title: "Henüz web siteniz yok",
+            fw1_text: "Müşterileriniz sizi çevrimiçi arıyor — ama bulamıyor.",
+            fw2_title: "Web siteniz güncelliğini yitirdi",
+            fw2_text: "Sayfanız var, ama 2010'dan kalma gibi görünüyor.",
+            fw3_title: "Zamanınız yok",
+            fw3_text: "İşiniz devam ediyor — bunu sizin için yapacak birine ihtiyacınız var.",
+            fw4_title: "Stres istemiyorsunuz",
+            fw4_text: "Jargon yok, karmaşık süreçler yok — sadece hazır bir web sitesi.",
+            l_title: "Sizin için ne yapıyorum",
+            l1_title: "🤝 Kişisel görüşme",
+            l1_text: "Size geliyorum — kafe, iş yeri ya da nereyi tercih ederseniz.",
+            l2_title: "🌐 Yeni web siteniz",
+            l2_text: "Net, modern ve işinize özel olarak tasarlanmış.",
+            l3_title: "📱 Her cihazda mükemmel",
+            l3_text: "Akıllı telefon, tablet veya bilgisayar — her zaman profesyonel.",
+            w_title: "Neden ben?",
+            w_intro: '"Ofiste oturup bekleyen bir programcı değilim. Size geliyorum."',
+            w_p1: "Otellerde, restoranlarda ve satışta 15 yılı aşkın deneyimim var. İlk izlenimin ne kadar önemli olduğunu biliyorum — resepsiyonda da internette de.",
+            w_p2: "Şimdi küçük Viyana işletmelerinin gerçekte neler yapabildiğini çevrimiçi göstermelerine yardımcı oluyorum.",
+            w_v1: "✅ Nerede olursanız olun kişisel olarak geliyorum",
+            w_v2: "✅ Almanca, Rusça, İngilizce ve Farsça konuşuyorum",
+            w_v3: "✅ Viyana'yı ve işletmelerini tanıyorum",
+            w_v4: "✅ Teslimattan sonra da her zaman yanınızdayım",
+            s1: "Hazırlanan web sitesi",
+            s2: "Gün teslimat süresi",
+            s3: "Kişisel hizmet",
+            p_title: "Net fiyatlar — sürpriz yok",
+            p_sub: "Baştan ne ödeyeceğinizi biliyorsunuz.",
+            b1: "✅ Kişisel ilk görüşme",
+            b2: "✅ Tek sayfalık web sitesi",
+            b3: "✅ Mobil uyumlu",
+            b4: "✅ 7–10 günde hazır",
+            b5: "✅ Tüm erişimler size teslim edilir",
+            b6: "❌ Sürekli destek yok",
+            k1: "✅ 12 ay destek dahil",
+            k2: "✅ Değişiklikler ve güncellemeler dahil",
+            anfragen: "Şimdi talep edin",
+            empfohlen: "Önerilen",
+            kon_title: "Konuşalım — bağlayıcı değil",
+            kon_sub: "24 saat içinde geri dönüyorum. Söz.",
+            kon_name: "Adınız",
+            kon_email: "E-posta adresiniz",
+            kon_tel: "Telefon numaranız",
+            kon_select: "Hangi paket sizi ilgilendiriyor?",
+            kon_frage: "Bir sorum var",
+            kon_msg: "İşletmeniz hakkında kısaca anlatın",
+            kon_btn: "Mesaj gönder →",
+            imp_btn: "Künye",
+            daten_btn: "Gizlilik",
+            typing: [
+                "İşletmeniz var. Peki insanlar sizi internette buluyor mu?",
+                "Web siteniz yok mu? Müşterileriniz sizi arıyor — ve rakiplerinizi buluyor.",
+                "Web sitenizi oluşturuyorum — kişisel, hızlı, dürüst."
+            ]
+        },
+        sr: {
+            nav_leistungen: "Usluge",
+            nav_warum: "Zašto ja",
+            nav_preise: "Cene",
+            nav_kontakt: "Kontakt",
+            hero_sub: "Kreiram profesionalne web stranice za mala preduzeća u Beču — lično, brzo i bez stresa za vas.",
+            hero_btn: "Zakazati besplatan razgovor →",
+            g1: "✅ Dolazim lično kod vas",
+            g2: "✅ Gotovo za 7–10 radnih dana",
+            g3: "✅ Fiksna cena — bez iznenađenja",
+            g4: "✅ Uvek dostupan",
+            fw_title: "Za koga je ovo?",
+            fw_sub: "Radim sa malim preduzećima — ne sa korporacijama.",
+            fw1_title: "Nemate web stranicu",
+            fw1_text: "Vaši klijenti vas traže online — i ne mogu da vas nađu.",
+            fw2_title: "Vaša web stranica je zastarela",
+            fw2_text: "Imate stranicu, ali izgleda kao iz 2010. godine.",
+            fw3_title: "Nemate vremena za to",
+            fw3_text: "Vaše poslovanje radi — potreban vam je neko ko će to uraditi umesto vas.",
+            fw4_title: "Ne želite stres",
+            fw4_text: "Bez žargona, bez komplikovanih procesa — samo gotova web stranica.",
+            l_title: "Šta radim za vas",
+            l1_title: "🤝 Lični razgovor",
+            l1_text: "Dolazim kod vas — u kafić, poslovnicu ili gde god želite.",
+            l2_title: "🌐 Vaša nova web stranica",
+            l2_text: "Jasna, moderna i prilagođena vašem poslovanju.",
+            l3_title: "📱 Savršeno na svakom uređaju",
+            l3_text: "Pametni telefon, tablet ili računar — uvek profesionalno.",
+            w_title: "Zašto baš ja?",
+            w_intro: '"Nisam programer koji sedi u kancelariji i čeka. Dolazim kod vas."',
+            w_p1: "Više od 15 godina rada u hotelima, restoranima i prodaji. Znam koliko je važan prvi utisak — na recepciji ili na internetu.",
+            w_p2: "Sada pomažem malim bečkim preduzećima da pokažu online ono što zaista umeju.",
+            w_v1: "✅ Dolazim lično kod vas — gde god da ste",
+            w_v2: "✅ Govorim nemački, ruski, engleski i persijski",
+            w_v3: "✅ Poznajem Beč i njegova preduzeća",
+            w_v4: "✅ I posle isporuke sam tu za vas",
+            s1: "Napravljenih web stranica",
+            s2: "Dana rok isporuke",
+            s3: "Lična usluga",
+            p_title: "Jasne cene — bez iznenađenja",
+            p_sub: "Znate od početka koliko plaćate.",
+            b1: "✅ Lični prvi razgovor",
+            b2: "✅ Jednostranična web stranica",
+            b3: "✅ Optimizovano za mobilne uređaje",
+            b4: "✅ Gotovo za 7–10 dana",
+            b5: "✅ Svi pristupi se predaju vama",
+            b6: "❌ Bez tekuće podrške",
+            k1: "✅ 12 meseci podrške uključeno",
+            k2: "✅ Izmene i ažuriranja uključena",
+            anfragen: "Pošaljite upit",
+            empfohlen: "Preporučeno",
+            kon_title: "Razgovarajmo — bez obaveza",
+            kon_sub: "Javljam se u roku od 24 sata. Obećavam.",
+            kon_name: "Vaše ime",
+            kon_email: "Vaš email",
+            kon_tel: "Vaš broj telefona",
+            kon_select: "Koji paket vas zanima?",
+            kon_frage: "Imam pitanje",
+            kon_msg: "Ukratko mi recite o vašem poslovanju",
+            kon_btn: "Pošalji poruku →",
+            imp_btn: "Impressum",
+            daten_btn: "Privatnost",
+            typing: [
+                "Vaše preduzeće postoji. Ali da li vas ljudi mogu naći na internetu?",
+                "Nemate web stranicu? Vaši klijenti vas traže — i nalaze vašu konkurenciju.",
+                "Napraviću vam web stranicu — lično, brzo, pošteno."
+            ]
         }
     };
 
@@ -612,6 +776,71 @@
             alert('Fehler beim Senden. Bitte versuchen Sie es erneut.');
         }
     });
+
+    // ФОНОВЫЙ ЗВУК (волны — Web Audio API, без файлов)
+    let audioCtx = null;
+    let audioSource = null;
+    let audioGain = null;
+    let audioLfo = null;
+    let audioPlaying = false;
+
+    function toggleAudio() {
+        const btn = document.getElementById('audio-btn');
+        if (audioPlaying) {
+            audioGain.gain.setTargetAtTime(0, audioCtx.currentTime, 0.5);
+            setTimeout(() => {
+                audioSource.stop();
+                audioLfo.stop();
+                audioCtx.close();
+                audioCtx = null;
+                audioPlaying = false;
+            }, 800);
+            btn.textContent = '🔇';
+        } else {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            // Розовый шум — звук, похожий на волны
+            const bufferSize = audioCtx.sampleRate * 4;
+            const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+            const data = buffer.getChannelData(0);
+            let b0=0,b1=0,b2=0,b3=0,b4=0,b5=0,b6=0;
+            for (let i = 0; i < bufferSize; i++) {
+                const w = Math.random() * 2 - 1;
+                b0 = 0.99886*b0 + w*0.0555179;
+                b1 = 0.99332*b1 + w*0.0750759;
+                b2 = 0.96900*b2 + w*0.1538520;
+                b3 = 0.86650*b3 + w*0.3104856;
+                b4 = 0.55000*b4 + w*0.5329522;
+                b5 = -0.7616*b5 - w*0.0168980;
+                data[i] = (b0+b1+b2+b3+b4+b5+b6+w*0.5362)*0.11;
+                b6 = w * 0.115926;
+            }
+            audioSource = audioCtx.createBufferSource();
+            audioSource.buffer = buffer;
+            audioSource.loop = true;
+            // Фильтр низких частот — мягкий звук
+            const filter = audioCtx.createBiquadFilter();
+            filter.type = 'lowpass';
+            filter.frequency.value = 700;
+            // LFO — ритм волн (медленное нарастание и спад)
+            audioLfo = audioCtx.createOscillator();
+            const lfoGain = audioCtx.createGain();
+            audioLfo.frequency.value = 0.12;
+            lfoGain.gain.value = 0.25;
+            audioGain = audioCtx.createGain();
+            audioGain.gain.value = 0;
+            audioLfo.connect(lfoGain);
+            lfoGain.connect(audioGain.gain);
+            audioSource.connect(filter);
+            filter.connect(audioGain);
+            audioGain.connect(audioCtx.destination);
+            audioLfo.start();
+            audioSource.start();
+            // Плавное включение
+            audioGain.gain.setTargetAtTime(0.18, audioCtx.currentTime, 1.2);
+            audioPlaying = true;
+            btn.textContent = '🔊';
+        }
+    }
 
     // ЧАСТИЦЫ
     const canvas = document.getElementById('particles');
