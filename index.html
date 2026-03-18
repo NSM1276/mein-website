@@ -217,7 +217,7 @@
             ✅ Nachricht gesendet! Ich melde mich bald.
         </div>
         <div class="kontakt-links">
-            <a href="mailto:nasim2131@gmail.com">📧 nasim2131@gmail.com</a>
+            <a href="/cdn-cgi/l/email-protection#147a75677d7926252725547379757d783a777b79">📧 <span class="__cf_email__" data-cfemail="264847554f4b1417151766414b474f4a0845494b">[email&#160;protected]</span></a>
             <a href="https://wa.me/4367764292055">💬 WhatsApp</a>
         </div>
     </section>
@@ -238,7 +238,7 @@
                 <p>
                     <strong>Nasim Nuridinov EU</strong><br>
                     Tscherttegasse 39/66/28, 1120 Wien, Österreich<br>
-                    📧 nasim2131@gmail.com &nbsp;|&nbsp; 📞 +43 677 64292055<br>
+                    📧 <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2947485a40441b181a18694e44484045074a4644">[email&#160;protected]</a> &nbsp;|&nbsp; 📞 +43 677 64292055<br>
                     ATU-Nr.: ATU80802758<br>
                     Unternehmensgegenstand: Webdesign & Webentwicklung<br>
                     Behörde: Magistrat der Stadt Wien<br>
@@ -264,7 +264,7 @@
                     Verantwortlicher im Sinne der DSGVO:<br>
                     <strong>Nasim Nuridinov EU</strong><br>
                     Tscherttegasse 39/66/28, 1120 Wien<br>
-                    📧 nasim2131@gmail.com
+                    📧 <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="365857455f5b0407050776515b575f5a1855595b">[email&#160;protected]</a>
                 </p>
             </div>
         </div>
@@ -273,7 +273,7 @@
     <button id="back-to-top">↑</button>
     <button id="audio-btn" onclick="toggleAudio()" title="Ambient sound">🔇</button>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // ПЕРЕВОДЫ
     const translations = {
         de: {
@@ -664,7 +664,7 @@
             charIndex++;
         }
         if (!isDeleting && charIndex === aktuellerText.length) {
-            setTimeout(() => isDeleting = true, 2000);
+            setTimeout(() => isDeleting = true, 3500);
         } else if (isDeleting && charIndex === 0) {
             isDeleting = false;
             textIndex = (textIndex + 1) % typingTexte.length;
@@ -872,20 +872,4 @@
 
     function drawParticles() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        particles.forEach(p => {
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(255, 107, 43, ${p.alpha})`;
-            ctx.fill();
-            p.x += p.dx;
-            p.y += p.dy;
-            if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
-            if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
-        });
-        requestAnimationFrame(drawParticles);
-    }
-    drawParticles();
-    </script>
-
-</body>
-</html>
+        parti
