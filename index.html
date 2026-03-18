@@ -3,390 +3,889 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PAMIR — Pizza & Kebap Wien</title>
-    <meta property="og:title" content="PAMIR — Pizza & Kebap Wien">
-    <meta property="og:description" content="Frisch zubereitet, jeden Tag. Pizza, Döner, Dürüm & Burger in Wien Meidling.">
-    <meta property="og:image" content="https://NSM1276.github.io/pamir-website/hero.jpg">
-    <meta property="og:url" content="https://NSM1276.github.io/pamir-website/">
+    <title>Nasim Nuridinov — Webseiten für kleine Unternehmen in Wien</title>
+    <meta name="description" content="Nasim Nuridinov — professionelle Websites für kleine Betriebe in Wien. Persönlich, schnell, Fixpreis ab 500€.">
+    <meta property="og:title" content="Nasim Nuridinov — Webseiten für kleine Unternehmen in Wien">
+    <meta property="og:description" content="Professionelle Websites für kleine Betriebe in Wien. Persönlich, schnell, Fixpreis ab 500€.">
+    <meta property="og:image" content="http://nasim.at/nasim.png">
     <meta property="og:type" content="website">
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <meta property="og:url" content="http://nasim.at/">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌐</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        #audio-btn {
+            position: fixed;
+            bottom: 80px;
+            right: 24px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255,107,43,0.15);
+            border: 1px solid rgba(255,107,43,0.4);
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s, transform 0.2s;
+            backdrop-filter: blur(6px);
+        }
+        #audio-btn:hover {
+            background: rgba(255,107,43,0.35);
+            transform: scale(1.1);
+        }
+    </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-    <div class="nav-logo">PAMIR <span>Pizza & Kebap</span></div>
-    <ul class="nav-links">
-        <li><a href="#speisekarte">Speisekarte</a></li>
-        <li><a href="#ueber-uns">Über uns</a></li>
-        <li><a href="#bewertungen">Bewertungen</a></li>
-        <li><a href="#kontakt">Kontakt</a></li>
-    </ul>
-    <a href="tel:+43" class="nav-order">Jetzt bestellen</a>
-</nav>
+    <nav>
+        <div class="nav-logo">Nasim Nuridinov</div>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#leistungen" onclick="closeMenu()" data-i18n="nav_leistungen">Leistungen</a></li>
+            <li><a href="#warum-ich" onclick="closeMenu()" data-i18n="nav_warum">Warum ich</a></li>
+            <li><a href="#preise" onclick="closeMenu()" data-i18n="nav_preise">Preise</a></li>
+            <li><a href="#kontakt" onclick="closeMenu()" data-i18n="nav_kontakt">Kontakt</a></li>
+        </ul>
+        <div class="lang-switcher">
+            <button onclick="setLang('de')" class="lang-btn active" id="lang-de">DE</button>
+            <button onclick="setLang('ru')" class="lang-btn" id="lang-ru">RU</button>
+            <button onclick="setLang('en')" class="lang-btn" id="lang-en">EN</button>
+            <button onclick="setLang('tr')" class="lang-btn" id="lang-tr">TR</button>
+            <button onclick="setLang('sr')" class="lang-btn" id="lang-sr">SR</button>
+        </div>
+        <button class="burger" id="burger" onclick="toggleMenu()" aria-label="Menü öffnen">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
 
-<!-- HERO -->
-<section id="hero">
-    <canvas id="particles"></canvas>
-    <div class="hero-bg-pattern"></div>
-    <div class="hero-bg-img" style="position:absolute;inset:0;background:url('hero.jpg') center/cover no-repeat;opacity:0.18;z-index:0;"></div>
-    <div class="hero-glow"></div>
-    <div class="hero-content">
-        <div class="hero-tag">📍 Wien · Meidling</div>
-        <h1><span class="yellow">PAMIR</span></h1>
-        <p class="hero-sub-title">Pizza & Kebap</p>
-        <p class="hero-desc">Frisch zubereitet, jeden Tag. Hausgemachter Döner, knusprige Pizza und vieles mehr — direkt in Ihrer Nähe in Wien Meidling.</p>
-        <div class="hero-btns">
-            <a href="#speisekarte" class="btn-primary">Zur Speisekarte</a>
-            <a href="#kontakt" class="btn-outline">Standort & Öffnungszeiten</a>
+    <section id="hero">
+        <canvas id="particles"></canvas>
+        <div class="hero-content">
+            <h1></h1>
+            <p data-i18n="hero_sub">Ich erstelle professionelle Websites für kleine Betriebe in Wien — persönlich, schnell und ohne Stress für Sie.</p>
+            <a href="#kontakt" class="btn glow" data-i18n="hero_btn">Kostenloses Gespräch vereinbaren →</a>
         </div>
-    </div>
-    <div class="hero-right">
-        <div class="hero-emoji-stack">
-            <div class="hero-food-card">
-                <img src="pizza.webp" alt="Pizza" style="width:100%;height:140px;object-fit:cover;border-radius:4px;margin-bottom:10px;">
-                <p>Pizza</p>
-            </div>
-            <div class="hero-food-card">
-                <img src="doner.jpg" alt="Döner" style="width:100%;height:140px;object-fit:cover;border-radius:4px;margin-bottom:10px;">
-                <p>Kebap</p>
-            </div>
-            <div class="hero-food-card">
-                <img src="durum.webp" alt="Dürüm" style="width:100%;height:140px;object-fit:cover;border-radius:4px;margin-bottom:10px;">
-                <p>Dürüm</p>
-            </div>
-            <div class="hero-food-card">
-                <img src="burger.webp" alt="Burger" style="width:100%;height:140px;object-fit:cover;border-radius:4px;margin-bottom:10px;">
-                <p>Burger</p>
-            </div>
-        </div>
-    </div>
-</section>
+    </section>
 
-<!-- BANNER -->
-<div class="banner">
-    <div class="banner-track">
-        <span>🍕 Pizza</span><span>·</span>
-        <span>🥙 Döner Kebap</span><span>·</span>
-        <span>🌯 Dürüm</span><span>·</span>
-        <span>🍔 Burger</span><span>·</span>
-        <span>🥗 Sandwich</span><span>·</span>
-        <span>⭐ 4,4 Sterne auf Google</span><span>·</span>
-        <span>📍 Wien Meidling</span><span>·</span>
-        <span>🍕 Pizza</span><span>·</span>
-        <span>🥙 Döner Kebap</span><span>·</span>
-        <span>🌯 Dürüm</span><span>·</span>
-        <span>🍔 Burger</span><span>·</span>
-        <span>🥗 Sandwich</span><span>·</span>
-        <span>⭐ 4,4 Sterne auf Google</span><span>·</span>
-        <span>📍 Wien Meidling</span><span>·</span>
-    </div>
-</div>
+    <section id="garantien">
+        <div class="garantien-grid">
+            <div class="garantie" data-i18n="g1">✅ Ich komme persönlich zu Ihnen</div>
+            <div class="garantie" data-i18n="g2">✅ Fertig in 7–10 Werktagen</div>
+            <div class="garantie" data-i18n="g3">✅ Fixpreis — keine Überraschungen</div>
+            <div class="garantie" data-i18n="g4">✅ Immer erreichbar</div>
+        </div>
+    </section>
 
-<!-- SPEISEKARTE -->
-<section id="speisekarte">
-    <div class="section-header">
-        <span class="section-label">Was wir anbieten</span>
-        <h2>Unsere Speisekarte</h2>
-    </div>
-    <div class="menu-tabs">
-        <button class="menu-tab active">Alle</button>
-        <button class="menu-tab">Pizza</button>
-        <button class="menu-tab">Kebap & Döner</button>
-        <button class="menu-tab">Burger</button>
-    </div>
-    <div class="menu-grid">
-        <div class="menu-item">
-            <div>
-                <div class="menu-item-name">🍕 Pizza Margherita</div>
-                <div class="menu-item-desc">Tomatensauce, Mozzarella, Basilikum</div>
+    <section id="fuer-wen">
+        <h2 data-i18n="fw_title">Für wen ist das gedacht?</h2>
+        <p class="section-sub" data-i18n="fw_sub">Ich arbeite mit kleinen Betrieben — nicht mit Konzernen.</p>
+        <div class="gruende-grid">
+            <div class="grund">
+                <span class="grund-nr">01</span>
+                <h3 data-i18n="fw1_title">Sie haben noch gar keine Website</h3>
+                <p data-i18n="fw1_text">Ihre Kunden suchen Sie online — und finden Sie nicht.</p>
             </div>
-            <div class="menu-item-price">ab 7,50€</div>
-        </div>
-        <div class="menu-item">
-            <div>
-                <div class="menu-item-name">🍕 Pizza Salami</div>
-                <div class="menu-item-desc">Tomatensauce, Mozzarella, Salami</div>
+            <div class="grund">
+                <span class="grund-nr">02</span>
+                <h3 data-i18n="fw2_title">Ihre Website ist veraltet</h3>
+                <p data-i18n="fw2_text">Sie haben eine Seite, aber sie sieht aus wie aus dem Jahr 2010.</p>
             </div>
-            <div class="menu-item-price">ab 8,50€</div>
-        </div>
-        <div class="menu-item">
-            <div>
-                <div class="menu-item-name">🍕 Familienpizza</div>
-                <div class="menu-item-desc">Große Pizza für die ganze Familie</div>
+            <div class="grund">
+                <span class="grund-nr">03</span>
+                <h3 data-i18n="fw3_title">Sie haben keine Zeit dafür</h3>
+                <p data-i18n="fw3_text">Ihr Geschäft läuft — Sie brauchen jemanden der das für Sie erledigt.</p>
             </div>
-            <div class="menu-item-price">ab 14,90€</div>
-        </div>
-        <div class="menu-item">
-            <div>
-                <div class="menu-item-name">🥙 Döner Kebap</div>
-                <div class="menu-item-desc">Im Fladenbrot mit Salat und Sauce</div>
+            <div class="grund">
+                <span class="grund-nr">04</span>
+                <h3 data-i18n="fw4_title">Sie wollen keinen Stress</h3>
+                <p data-i18n="fw4_text">Kein Fachjargon, keine komplizierten Prozesse — einfach eine fertige Website.</p>
             </div>
-            <div class="menu-item-price">6,50€</div>
         </div>
-        <div class="menu-item">
-            <div>
-                <div class="menu-item-name">🌯 Dürüm</div>
-                <div class="menu-item-desc">Im Wrap mit frischem Gemüse</div>
-            </div>
-            <div class="menu-item-price">7,00€</div>
-        </div>
-        <div class="menu-item">
-            <div>
-                <div class="menu-item-name">🍔 Burger</div>
-                <div class="menu-item-desc">Hausgemacht mit frischen Zutaten</div>
-            </div>
-            <div class="menu-item-price">8,90€</div>
-        </div>
-        <div class="menu-item">
-            <div>
-                <div class="menu-item-name">🥗 Sandwich</div>
-                <div class="menu-item-desc">Frisch belegt nach Wahl</div>
-            </div>
-            <div class="menu-item-price">5,50€</div>
-        </div>
-        <div class="menu-item">
-            <div>
-                <div class="menu-item-name">🍕 Pizzaschnitte</div>
-                <div class="menu-item-desc">Eine Schnitte zum Mitnehmen</div>
-            </div>
-            <div class="menu-item-price">2,50€</div>
-        </div>
-    </div>
-</section>
+    </section>
 
-<!-- ÜBER UNS -->
-<section id="ueber-uns">
-    <div class="ueber-grid">
-        <div class="ueber-text">
-            <span class="section-label">Wer wir sind</span>
-            <h2>Seit Jahren <span>Ihr Lieblingslokal</span> in Meidling</h2>
-            <p>Bei PAMIR steht Qualität an erster Stelle. Jedes Gericht wird frisch zubereitet — von der knusprigen Pizza bis zum saftigen Döner Kebap.</p>
-            <p>Unser Team freut sich täglich darauf, Sie mit echtem Geschmack zu verwöhnen. Schnell, freundlich und immer frisch.</p>
-            <div class="ueber-stats">
-                <div class="ueber-stat">
-                    <strong>4,4★</strong>
-                    <span>Google Rating</span>
-                </div>
-                <div class="ueber-stat">
-                    <strong>100%</strong>
-                    <span>Frisch täglich</span>
-                </div>
-                <div class="ueber-stat">
-                    <strong>Wien</strong>
-                    <span>Meidling</span>
-                </div>
+    <section id="leistungen">
+        <h2 data-i18n="l_title">Was ich für Sie tue</h2>
+        <div class="cards">
+            <div class="card">
+                <h3 data-i18n="l1_title">🤝 Persönliches Gespräch</h3>
+                <p data-i18n="l1_text">Ich komme zu Ihnen — ins Café, ins Geschäft oder wohin Sie möchten.</p>
+            </div>
+            <div class="card">
+                <h3 data-i18n="l2_title">🌐 Ihre neue Website</h3>
+                <p data-i18n="l2_text">Klar, modern und auf Ihr Unternehmen zugeschnitten.</p>
+            </div>
+            <div class="card">
+                <h3 data-i18n="l3_title">📱 Auf jedem Gerät perfekt</h3>
+                <p data-i18n="l3_text">Egal ob Smartphone, Tablet oder Computer — immer professionell.</p>
             </div>
         </div>
-        <div class="ueber-visual">
-            <div class="visual-box" style="padding:0;overflow:hidden;">
-                <img src="pizza.webp" alt="Pizza" style="width:100%;height:100%;object-fit:cover;">
+    </section>
+
+    <section id="warum-ich">
+        <h2 data-i18n="w_title">Warum ausgerechnet ich?</h2>
+        <div class="about-grid">
+            <img src="nasim.png" alt="Nasim Nuridinov" class="about-foto">
+            <div class="about-text">
+                <p class="about-intro" data-i18n="w_intro">"Ich bin kein Programmierer der im Büro sitzt und wartet. Ich komme zu Ihnen."</p>
+                <p data-i18n="w_p1">Ich habe über 15 Jahre in Hotels, Restaurants und im Vertrieb gearbeitet. Ich weiß wie wichtig der erste Eindruck ist — ob an der Rezeption oder im Internet.</p>
+                <p data-i18n="w_p2">Jetzt helfe ich kleinen Wiener Betrieben genau das online zu zeigen, was sie wirklich können.</p>
+                <ul class="vorteile">
+                    <li data-i18n="w_v1">✅ Ich komme persönlich zu Ihnen — wo immer Sie sind</li>
+                    <li data-i18n="w_v2">✅ Ich spreche Deutsch, Russisch, Englisch und Persisch</li>
+                    <li data-i18n="w_v3">✅ Ich kenne Wien und seine Unternehmen</li>
+                    <li data-i18n="w_v4">✅ Nach der Lieferung bin ich weiterhin für Sie da</li>
+                </ul>
             </div>
-            <div class="visual-box" style="padding:0;overflow:hidden;">
-                <img src="doner.jpg" alt="Döner" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+    </section>
+
+    <section id="stats">
+        <div class="stats-grid">
+            <div class="stat">
+                <span class="stat-zahl" data-target="15">0</span>
+                <span class="stat-plus">+</span>
+                <p data-i18n="s1">Jahre Erfahrung</p>
             </div>
-            <div class="visual-box featured">
-                <span class="em">👨‍🍳</span>
-                <p>Täglich frisch zubereitet</p>
+            <div class="stat">
+                <span class="stat-zahl" data-target="7">0</span>
+                <p data-i18n="s2">Tage Lieferzeit</p>
+            </div>
+            <div class="stat">
+                <span class="stat-zahl" data-target="100">0</span>
+                <span class="stat-plus">%</span>
+                <p data-i18n="s3">Persönlicher Service</p>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- BEWERTUNGEN -->
-<section id="bewertungen">
-    <div class="section-header">
-        <span class="section-label">Was unsere Gäste sagen</span>
-        <h2>Kundenbewertungen</h2>
-    </div>
-    <div class="rating-hero">
-        <div class="rating-number">4,4</div>
-        <div>
-            <div class="rating-stars">⭐⭐⭐⭐⭐</div>
-            <div class="rating-count">Basierend auf Google Bewertungen</div>
-        </div>
-    </div>
-    <div class="reviews-grid">
-        <div class="review-card">
-            <div class="review-stars">⭐⭐⭐⭐⭐</div>
-            <p class="review-text">„Bester Döner in Meidling! Immer frisch, freundliches Personal und faire Preise. Komme jede Woche."</p>
-            <div class="review-author">— Thomas K., Wien</div>
-        </div>
-        <div class="review-card">
-            <div class="review-stars">⭐⭐⭐⭐⭐</div>
-            <p class="review-text">„Die Pizza ist wirklich lecker — knusprig und mit viel Belag. Schnelle Lieferung, alles top!"</p>
-            <div class="review-author">— Maria S., Wien</div>
-        </div>
-        <div class="review-card">
-            <div class="review-stars">⭐⭐⭐⭐</div>
-            <p class="review-text">„Gutes Preis-Leistungs-Verhältnis. Der Dürüm ist mein Favorit. Empfehle ich weiter!"</p>
-            <div class="review-author">— Ali M., Wien</div>
-        </div>
-    </div>
-</section>
-
-<!-- KONTAKT -->
-<section id="kontakt">
-    <div class="kontakt-grid">
-        <div class="kontakt-info">
-            <span class="section-label">Finden Sie uns</span>
-            <h2>Besuchen Sie <span>uns</span></h2>
-            <ul class="info-list">
-                <li>
-                    <div class="info-icon">📍</div>
-                    <div class="info-text">
-                        <strong>Adresse</strong>
-                        <span>Wien Meidling<br>Nähe S+U Schedifkaplatz</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="info-icon">🕐</div>
-                    <div class="info-text">
-                        <strong>Öffnungszeiten</strong>
-                        <span>Mo–So: 10:00 – 23:00 Uhr</span>
-                    </div>
-                </li>
-                <li>
-                    <div class="info-icon">📞</div>
-                    <div class="info-text">
-                        <strong>Telefon</strong>
-                        <span>Auf Anfrage</span>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <div class="map-placeholder">
-            <div class="map-pin">
-                <span class="pin-emoji">📍</span>
-                <strong>PAMIR</strong>
-                <span>Wien Meidling</span>
+    <section id="preise">
+        <h2 data-i18n="p_title">Klare Preise — keine Überraschungen</h2>
+        <p class="section-sub" data-i18n="p_sub">Sie wissen von Anfang an was Sie bezahlen.</p>
+        <div class="preise-cards">
+            <div class="preis-card">
+                <h3>Basis</h3>
+                <div class="preis">500€</div>
+                <ul>
+                    <li data-i18n="b1">✅ Persönliches Erstgespräch</li>
+                    <li data-i18n="b2">✅ Einseiter Website</li>
+                    <li data-i18n="b3">✅ Mobil optimiert</li>
+                    <li data-i18n="b4">✅ Fertig in 7–10 Tagen</li>
+                    <li data-i18n="b5">✅ Alle Zugänge erhalten Sie</li>
+                    <li data-i18n="b6">❌ Kein laufender Support</li>
+                </ul>
+                <a href="#kontakt" class="btn" data-i18n="anfragen">Jetzt anfragen</a>
             </div>
-            <a href="https://maps.google.com/?q=Pamir+Wien+Meidling" class="map-btn" target="_blank">
-                In Google Maps öffnen
-            </a>
+            <div class="preis-card featured">
+                <div class="badge" data-i18n="empfohlen">Empfohlen</div>
+                <h3>Komplett</h3>
+                <div class="preis">1.100€</div>
+                <ul>
+                    <li data-i18n="b1">✅ Persönliches Erstgespräch</li>
+                    <li data-i18n="b2">✅ Einseiter Website</li>
+                    <li data-i18n="b3">✅ Mobil optimiert</li>
+                    <li data-i18n="b4">✅ Fertig in 7–10 Tagen</li>
+                    <li data-i18n="k1">✅ 12 Monate Support inklusive</li>
+                    <li data-i18n="k2">✅ Änderungen & Updates inklusive</li>
+                </ul>
+                <a href="#kontakt" class="btn" data-i18n="anfragen">Jetzt anfragen</a>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- FOOTER -->
-<footer>
-    <div class="footer-logo">PAMIR</div>
-    <p>Pizza & Kebap · Wien Meidling</p>
-    <p>⭐ 4,4 auf Google</p>
-</footer>
+    <section id="kontakt">
+        <h2 data-i18n="kon_title">Lassen Sie uns reden — unverbindlich</h2>
+        <p class="section-sub" data-i18n="kon_sub">Ich melde mich innerhalb von 24 Stunden. Versprochen.</p>
+        <form class="kontakt-form" id="kontakt-form" action="https://formspree.io/f/xgonnepd" method="POST">
+            <input type="text" name="name" data-i18n-placeholder="kon_name" placeholder="Ihr Name" required>
+            <input type="email" name="email" data-i18n-placeholder="kon_email" placeholder="Ihre E-Mail" required>
+            <input type="tel" name="phone" data-i18n-placeholder="kon_tel" placeholder="Ihre Telefonnummer">
+            <select name="package">
+                <option value="" data-i18n="kon_select">Welches Paket interessiert Sie?</option>
+                <option value="basis">Basis — 500€</option>
+                <option value="komplett">Komplett — 1.100€</option>
+                <option value="frage" data-i18n="kon_frage">Ich habe noch eine Frage</option>
+            </select>
+            <textarea name="message" data-i18n-placeholder="kon_msg" placeholder="Erzählen Sie mir kurz von Ihrem Unternehmen" rows="4"></textarea>
+            <button type="submit" class="btn glow" data-i18n="kon_btn">Nachricht senden →</button>
+        </form>
+        <div id="form-success" style="display:none; color:#ff6b2b; font-size:18px; font-weight:600; margin-top:20px;">
+            ✅ Nachricht gesendet! Ich melde mich bald.
+        </div>
+        <div class="kontakt-links">
+            <a href="mailto:nasim2131@gmail.com">📧 nasim2131@gmail.com</a>
+            <a href="https://wa.me/4367764292055">💬 WhatsApp</a>
+        </div>
+    </section>
 
-<script>
-// ЧАСТИЦЫ
-const canvas = document.getElementById('particles');
-const ctx = canvas.getContext('2d');
+    <footer>
+        <div class="footer-bottom">
+            <p>© 2026 Nasim Nuridinov EU · Wien
+                <span class="footer-sep">·</span>
+                <button class="impressum-toggle" onclick="toggleImpressum()" data-i18n="imp_btn">Impressum</button>
+                <span class="footer-sep">·</span>
+                <button class="impressum-toggle" onclick="toggleDatenschutz()" data-i18n="daten_btn">Datenschutz</button>
+            </p>
+        </div>
 
-function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-}
-resizeCanvas();
-window.addEventListener('resize', resizeCanvas);
+        <div class="impressum-box" id="impressum-box">
+            <div class="impressum-content">
+                <h4>Impressum</h4>
+                <p>
+                    <strong>Nasim Nuridinov EU</strong><br>
+                    Tscherttegasse 39/66/28, 1120 Wien, Österreich<br>
+                    📧 nasim2131@gmail.com &nbsp;|&nbsp; 📞 +43 677 64292055<br>
+                    ATU-Nr.: ATU80802758<br>
+                    Unternehmensgegenstand: Webdesign & Webentwicklung<br>
+                    Behörde: Magistrat der Stadt Wien<br>
+                    Mitglied der WKO Wien
+                </p>
+                <p class="impressum-hinweis">
+                    Alle Inhalte dieser Website wurden mit größter Sorgfalt erstellt.
+                    Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte
+                    wird keine Gewähr übernommen.
+                </p>
+            </div>
+        </div>
 
-const particles = [];
-for (let i = 0; i < 70; i++) {
-    particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        r: Math.random() * 2.5 + 0.5,
-        dx: (Math.random() - 0.5) * 0.8,
-        dy: (Math.random() - 0.5) * 0.8,
-        alpha: Math.random() * 0.6 + 0.2
-    });
-}
+        <div class="impressum-box" id="datenschutz-box">
+            <div class="impressum-content">
+                <h4>Datenschutz</h4>
+                <p>
+                    Diese Website erhebt keine personenbezogenen Daten ohne Ihre ausdrückliche Zustimmung.
+                    Das Kontaktformular dient ausschließlich der direkten Kommunikation mit dem Anbieter.
+                    Ihre Daten werden nicht an Dritte weitergegeben.
+                </p>
+                <p>
+                    Verantwortlicher im Sinne der DSGVO:<br>
+                    <strong>Nasim Nuridinov EU</strong><br>
+                    Tscherttegasse 39/66/28, 1120 Wien<br>
+                    📧 nasim2131@gmail.com
+                </p>
+            </div>
+        </div>
+    </footer>
 
-function drawParticles() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles.forEach(p => {
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 214, 0, ${p.alpha})`;
-        ctx.fill();
-        p.x += p.dx;
-        p.y += p.dy;
-        if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
-        if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
-    });
-    requestAnimationFrame(drawParticles);
-}
-drawParticles();
+    <button id="back-to-top">↑</button>
+    <button id="audio-btn" onclick="toggleAudio()" title="Ambient sound">🔇</button>
 
-// ПЛАВНОЕ ПОЯВЛЕНИЕ СЕКЦИЙ
-const fadeEls = document.querySelectorAll('.menu-item, .review-card, .ueber-stat, .info-list li, .hero-food-card, .section-header');
-fadeEls.forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(30px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-});
-
-const scrollObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-            setTimeout(() => {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }, i * 80);
-            scrollObserver.unobserve(entry.target);
+    <script>
+    // ПЕРЕВОДЫ
+    const translations = {
+        de: {
+            nav_leistungen: "Leistungen",
+            nav_warum: "Warum ich",
+            nav_preise: "Preise",
+            nav_kontakt: "Kontakt",
+            hero_sub: "Ich erstelle professionelle Websites für kleine Betriebe in Wien — persönlich, schnell und ohne Stress für Sie.",
+            hero_btn: "Kostenloses Gespräch vereinbaren →",
+            g1: "✅ Ich komme persönlich zu Ihnen",
+            g2: "✅ Fertig in 7–10 Werktagen",
+            g3: "✅ Fixpreis — keine Überraschungen",
+            g4: "✅ Immer erreichbar",
+            fw_title: "Für wen ist das gedacht?",
+            fw_sub: "Ich arbeite mit kleinen Betrieben — nicht mit Konzernen.",
+            fw1_title: "Sie haben noch gar keine Website",
+            fw1_text: "Ihre Kunden suchen Sie online — und finden Sie nicht.",
+            fw2_title: "Ihre Website ist veraltet",
+            fw2_text: "Sie haben eine Seite, aber sie sieht aus wie aus dem Jahr 2010.",
+            fw3_title: "Sie haben keine Zeit dafür",
+            fw3_text: "Ihr Geschäft läuft — Sie brauchen jemanden der das für Sie erledigt.",
+            fw4_title: "Sie wollen keinen Stress",
+            fw4_text: "Kein Fachjargon, keine komplizierten Prozesse — einfach eine fertige Website.",
+            l_title: "Was ich für Sie tue",
+            l1_title: "🤝 Persönliches Gespräch",
+            l1_text: "Ich komme zu Ihnen — ins Café, ins Geschäft oder wohin Sie möchten.",
+            l2_title: "🌐 Ihre neue Website",
+            l2_text: "Klar, modern und auf Ihr Unternehmen zugeschnitten.",
+            l3_title: "📱 Auf jedem Gerät perfekt",
+            l3_text: "Egal ob Smartphone, Tablet oder Computer — immer professionell.",
+            w_title: "Warum ausgerechnet ich?",
+            w_intro: '"Ich bin kein Programmierer der im Büro sitzt und wartet. Ich komme zu Ihnen."',
+            w_p1: "Ich habe über 15 Jahre in Hotels, Restaurants und im Vertrieb gearbeitet. Ich weiß wie wichtig der erste Eindruck ist — ob an der Rezeption oder im Internet.",
+            w_p2: "Jetzt helfe ich kleinen Wiener Betrieben genau das online zu zeigen, was sie wirklich können.",
+            w_v1: "✅ Ich komme persönlich zu Ihnen — wo immer Sie sind",
+            w_v2: "✅ Ich spreche Deutsch, Russisch, Englisch und Persisch",
+            w_v3: "✅ Ich kenne Wien und seine Unternehmen",
+            w_v4: "✅ Nach der Lieferung bin ich weiterhin für Sie da",
+            s1: "Jahre Erfahrung",
+            s2: "Tage Lieferzeit",
+            s3: "Persönlicher Service",
+            p_title: "Klare Preise — keine Überraschungen",
+            p_sub: "Sie wissen von Anfang an was Sie bezahlen.",
+            b1: "✅ Persönliches Erstgespräch",
+            b2: "✅ Einseiter Website",
+            b3: "✅ Mobil optimiert",
+            b4: "✅ Fertig in 7–10 Tagen",
+            b5: "✅ Alle Zugänge erhalten Sie",
+            b6: "❌ Kein laufender Support",
+            k1: "✅ 12 Monate Support inklusive",
+            k2: "✅ Änderungen & Updates inklusive",
+            anfragen: "Jetzt anfragen",
+            empfohlen: "Empfohlen",
+            kon_title: "Lassen Sie uns reden — unverbindlich",
+            kon_sub: "Ich melde mich innerhalb von 24 Stunden. Versprochen.",
+            kon_name: "Ihr Name",
+            kon_email: "Ihre E-Mail",
+            kon_tel: "Ihre Telefonnummer",
+            kon_select: "Welches Paket interessiert Sie?",
+            kon_frage: "Ich habe noch eine Frage",
+            kon_msg: "Erzählen Sie mir kurz von Ihrem Unternehmen",
+            kon_btn: "Nachricht senden →",
+            imp_btn: "Impressum",
+            daten_btn: "Datenschutz",
+            typing: [
+                "Ihr Unternehmen existiert. Aber findet man Sie im Internet?",
+                "Kein Website? Ihre Kunden suchen Sie — und finden jemand anderen.",
+                "Ich erstelle Ihre Website — persönlich, schnell, fair."
+            ]
+        },
+        ru: {
+            nav_leistungen: "Услуги",
+            nav_warum: "Почему я",
+            nav_preise: "Цены",
+            nav_kontakt: "Контакт",
+            hero_sub: "Я создаю профессиональные сайты для малого бизнеса в Вене — лично, быстро и без стресса для вас.",
+            hero_btn: "Бесплатная консультация →",
+            g1: "✅ Приеду к вам лично",
+            g2: "✅ Готово за 7–10 рабочих дней",
+            g3: "✅ Фиксированная цена — без сюрпризов",
+            g4: "✅ Всегда на связи",
+            fw_title: "Для кого это?",
+            fw_sub: "Я работаю с малым бизнесом — не с корпорациями.",
+            fw1_title: "У вас нет сайта",
+            fw1_text: "Ваши клиенты ищут вас онлайн — и не находят.",
+            fw2_title: "Ваш сайт устарел",
+            fw2_text: "Есть страница, но выглядит как из 2010 года.",
+            fw3_title: "У вас нет времени",
+            fw3_text: "Ваш бизнес работает — вам нужен кто-то кто сделает это за вас.",
+            fw4_title: "Вы не хотите лишних хлопот",
+            fw4_text: "Никакого жаргона, никаких сложных процессов — просто готовый сайт.",
+            l_title: "Что я делаю для вас",
+            l1_title: "🤝 Личная встреча",
+            l1_text: "Приеду к вам — в кафе, в офис или куда удобно. Обсудим всё вместе.",
+            l2_title: "🌐 Ваш новый сайт",
+            l2_text: "Чёткий, современный и под ваш бизнес. Клиенты сразу поймут что вы предлагаете.",
+            l3_title: "📱 Идеально на любом устройстве",
+            l3_text: "Смартфон, планшет или компьютер — всегда профессионально.",
+            w_title: "Почему именно я?",
+            w_intro: '"Я не программист который сидит в офисе и ждёт. Я приеду к вам."',
+            w_p1: "Более 15 лет работы в отелях, ресторанах и продажах. Я знаю как важно первое впечатление — на рецепции или в интернете.",
+            w_p2: "Теперь я помогаю малым венским предприятиям показать онлайн то, что они умеют.",
+            w_v1: "✅ Приеду к вам лично — где бы вы ни находились",
+            w_v2: "✅ Говорю на немецком, русском, английском и персидском",
+            w_v3: "✅ Знаю Вену и её бизнес",
+            w_v4: "✅ После сдачи всегда на связи",
+            s1: "Лет опыта",
+            s2: "Дней срок сдачи",
+            s3: "Личный сервис",
+            p_title: "Чёткие цены — без сюрпризов",
+            p_sub: "Вы знаете с самого начала сколько платите.",
+            b1: "✅ Личная первая встреча",
+            b2: "✅ Одностраничный сайт",
+            b3: "✅ Адаптирован для телефона",
+            b4: "✅ Готово за 7–10 дней",
+            b5: "✅ Все доступы передаются вам",
+            b6: "❌ Без поддержки",
+            k1: "✅ 12 месяцев поддержки включено",
+            k2: "✅ Правки и обновления включены",
+            anfragen: "Заказать",
+            empfohlen: "Рекомендуем",
+            kon_title: "Давайте поговорим — без обязательств",
+            kon_sub: "Отвечу в течение 24 часов. Обещаю.",
+            kon_name: "Ваше имя",
+            kon_email: "Ваш Email",
+            kon_tel: "Ваш номер телефона",
+            kon_select: "Какой пакет вас интересует?",
+            kon_frage: "У меня есть вопрос",
+            kon_msg: "Расскажите коротко о вашем бизнесе",
+            kon_btn: "Отправить сообщение →",
+            imp_btn: "Impressum",
+            daten_btn: "Datenschutz",
+            typing: [
+                "Ваш бизнес существует. Но находят ли вас в интернете?",
+                "Нет сайта? Ваши клиенты ищут вас — и находят конкурентов.",
+                "Создам ваш сайт — лично, быстро, честно."
+            ]
+        },
+        en: {
+            nav_leistungen: "Services",
+            nav_warum: "Why me",
+            nav_preise: "Pricing",
+            nav_kontakt: "Contact",
+            hero_sub: "I create professional websites for small businesses in Vienna — personal, fast and stress-free for you.",
+            hero_btn: "Book a free consultation →",
+            g1: "✅ I come to you personally",
+            g2: "✅ Ready in 7–10 working days",
+            g3: "✅ Fixed price — no surprises",
+            g4: "✅ Always reachable",
+            fw_title: "Who is this for?",
+            fw_sub: "I work with small businesses — not corporations.",
+            fw1_title: "You have no website yet",
+            fw1_text: "Your customers search for you online — and can't find you.",
+            fw2_title: "Your website is outdated",
+            fw2_text: "You have a page, but it looks like it's from 2010.",
+            fw3_title: "You have no time for it",
+            fw3_text: "Your business is running — you need someone to handle this for you.",
+            fw4_title: "You want no stress",
+            fw4_text: "No jargon, no complicated processes — just a finished website.",
+            l_title: "What I do for you",
+            l1_title: "🤝 Personal meeting",
+            l1_text: "I come to you — café, office or wherever you prefer.",
+            l2_title: "🌐 Your new website",
+            l2_text: "Clear, modern and tailored to your business.",
+            l3_title: "📱 Perfect on every device",
+            l3_text: "Smartphone, tablet or computer — always professional.",
+            w_title: "Why choose me?",
+            w_intro: '"I\'m not a programmer sitting in an office waiting. I come to you."',
+            w_p1: "Over 15 years working in hotels, restaurants and sales. I know how important first impressions are — at the reception desk or online.",
+            w_p2: "Now I help small Viennese businesses show online what they truly can do.",
+            w_v1: "✅ I come to you personally — wherever you are",
+            w_v2: "✅ I speak German, Russian, English and Persian",
+            w_v3: "✅ I know Vienna and its businesses",
+            w_v4: "✅ I'm still available after delivery",
+            s1: "Years of experience",
+            s2: "Days delivery time",
+            s3: "Personal service",
+            p_title: "Clear prices — no surprises",
+            p_sub: "You know from the start what you pay.",
+            b1: "✅ Personal first meeting",
+            b2: "✅ One-page website",
+            b3: "✅ Mobile optimized",
+            b4: "✅ Ready in 7–10 days",
+            b5: "✅ All access handed over to you",
+            b6: "❌ No ongoing support",
+            k1: "✅ 12 months support included",
+            k2: "✅ Changes & updates included",
+            anfragen: "Get started",
+            empfohlen: "Recommended",
+            kon_title: "Let's talk — no obligations",
+            kon_sub: "I'll get back to you within 24 hours. Promise.",
+            kon_name: "Your name",
+            kon_email: "Your email",
+            kon_tel: "Your phone number",
+            kon_select: "Which package interests you?",
+            kon_frage: "I have a question",
+            kon_msg: "Tell me briefly about your business",
+            kon_btn: "Send message →",
+            imp_btn: "Impressum",
+            daten_btn: "Privacy",
+            typing: [
+                "Your business exists. But can people find you online?",
+                "No website? Your customers are searching — and finding your competitors.",
+                "I'll create your website — personal, fast, fair."
+            ]
+        },
+        tr: {
+            nav_leistungen: "Hizmetler",
+            nav_warum: "Neden ben",
+            nav_preise: "Fiyatlar",
+            nav_kontakt: "İletişim",
+            hero_sub: "Viyana'daki küçük işletmeler için profesyonel web siteleri oluşturuyorum — kişisel, hızlı ve stressiz.",
+            hero_btn: "Ücretsiz görüşme ayarla →",
+            g1: "✅ Size kişisel olarak geliyorum",
+            g2: "✅ 7–10 iş günü içinde hazır",
+            g3: "✅ Sabit fiyat — sürpriz yok",
+            g4: "✅ Her zaman ulaşılabilir",
+            fw_title: "Bu kimin için?",
+            fw_sub: "Küçük işletmelerle çalışıyorum — büyük şirketlerle değil.",
+            fw1_title: "Henüz web siteniz yok",
+            fw1_text: "Müşterileriniz sizi çevrimiçi arıyor — ama bulamıyor.",
+            fw2_title: "Web siteniz güncelliğini yitirdi",
+            fw2_text: "Sayfanız var, ama 2010'dan kalma gibi görünüyor.",
+            fw3_title: "Zamanınız yok",
+            fw3_text: "İşiniz devam ediyor — bunu sizin için yapacak birine ihtiyacınız var.",
+            fw4_title: "Stres istemiyorsunuz",
+            fw4_text: "Jargon yok, karmaşık süreçler yok — sadece hazır bir web sitesi.",
+            l_title: "Sizin için ne yapıyorum",
+            l1_title: "🤝 Kişisel görüşme",
+            l1_text: "Size geliyorum — kafe, iş yeri ya da nereyi tercih ederseniz.",
+            l2_title: "🌐 Yeni web siteniz",
+            l2_text: "Net, modern ve işinize özel olarak tasarlanmış.",
+            l3_title: "📱 Her cihazda mükemmel",
+            l3_text: "Akıllı telefon, tablet veya bilgisayar — her zaman profesyonel.",
+            w_title: "Neden ben?",
+            w_intro: '"Ofiste oturup bekleyen bir programcı değilim. Size geliyorum."',
+            w_p1: "Otellerde, restoranlarda ve satışta 15 yılı aşkın deneyimim var. İlk izlenimin ne kadar önemli olduğunu biliyorum — resepsiyonda da internette de.",
+            w_p2: "Şimdi küçük Viyana işletmelerinin gerçekte neler yapabildiğini çevrimiçi göstermelerine yardımcı oluyorum.",
+            w_v1: "✅ Nerede olursanız olun kişisel olarak geliyorum",
+            w_v2: "✅ Almanca, Rusça, İngilizce ve Farsça konuşuyorum",
+            w_v3: "✅ Viyana'yı ve işletmelerini tanıyorum",
+            w_v4: "✅ Teslimattan sonra da her zaman yanınızdayım",
+            s1: "Yıl deneyim",
+            s2: "Gün teslimat süresi",
+            s3: "Kişisel hizmet",
+            p_title: "Net fiyatlar — sürpriz yok",
+            p_sub: "Baştan ne ödeyeceğinizi biliyorsunuz.",
+            b1: "✅ Kişisel ilk görüşme",
+            b2: "✅ Tek sayfalık web sitesi",
+            b3: "✅ Mobil uyumlu",
+            b4: "✅ 7–10 günde hazır",
+            b5: "✅ Tüm erişimler size teslim edilir",
+            b6: "❌ Sürekli destek yok",
+            k1: "✅ 12 ay destek dahil",
+            k2: "✅ Değişiklikler ve güncellemeler dahil",
+            anfragen: "Şimdi talep edin",
+            empfohlen: "Önerilen",
+            kon_title: "Konuşalım — bağlayıcı değil",
+            kon_sub: "24 saat içinde geri dönüyorum. Söz.",
+            kon_name: "Adınız",
+            kon_email: "E-posta adresiniz",
+            kon_tel: "Telefon numaranız",
+            kon_select: "Hangi paket sizi ilgilendiriyor?",
+            kon_frage: "Bir sorum var",
+            kon_msg: "İşletmeniz hakkında kısaca anlatın",
+            kon_btn: "Mesaj gönder →",
+            imp_btn: "Künye",
+            daten_btn: "Gizlilik",
+            typing: [
+                "İşletmeniz var. Peki insanlar sizi internette buluyor mu?",
+                "Web siteniz yok mu? Müşterileriniz sizi arıyor — ve rakiplerinizi buluyor.",
+                "Web sitenizi oluşturuyorum — kişisel, hızlı, dürüst."
+            ]
+        },
+        sr: {
+            nav_leistungen: "Usluge",
+            nav_warum: "Zašto ja",
+            nav_preise: "Cene",
+            nav_kontakt: "Kontakt",
+            hero_sub: "Kreiram profesionalne web stranice za mala preduzeća u Beču — lično, brzo i bez stresa za vas.",
+            hero_btn: "Zakazati besplatan razgovor →",
+            g1: "✅ Dolazim lično kod vas",
+            g2: "✅ Gotovo za 7–10 radnih dana",
+            g3: "✅ Fiksna cena — bez iznenađenja",
+            g4: "✅ Uvek dostupan",
+            fw_title: "Za koga je ovo?",
+            fw_sub: "Radim sa malim preduzećima — ne sa korporacijama.",
+            fw1_title: "Nemate web stranicu",
+            fw1_text: "Vaši klijenti vas traže online — i ne mogu da vas nađu.",
+            fw2_title: "Vaša web stranica je zastarela",
+            fw2_text: "Imate stranicu, ali izgleda kao iz 2010. godine.",
+            fw3_title: "Nemate vremena za to",
+            fw3_text: "Vaše poslovanje radi — potreban vam je neko ko će to uraditi umesto vas.",
+            fw4_title: "Ne želite stres",
+            fw4_text: "Bez žargona, bez komplikovanih procesa — samo gotova web stranica.",
+            l_title: "Šta radim za vas",
+            l1_title: "🤝 Lični razgovor",
+            l1_text: "Dolazim kod vas — u kafić, poslovnicu ili gde god želite.",
+            l2_title: "🌐 Vaša nova web stranica",
+            l2_text: "Jasna, moderna i prilagođena vašem poslovanju.",
+            l3_title: "📱 Savršeno na svakom uređaju",
+            l3_text: "Pametni telefon, tablet ili računar — uvek profesionalno.",
+            w_title: "Zašto baš ja?",
+            w_intro: '"Nisam programer koji sedi u kancelariji i čeka. Dolazim kod vas."',
+            w_p1: "Više od 15 godina rada u hotelima, restoranima i prodaji. Znam koliko je važan prvi utisak — na recepciji ili na internetu.",
+            w_p2: "Sada pomažem malim bečkim preduzećima da pokažu online ono što zaista umeju.",
+            w_v1: "✅ Dolazim lično kod vas — gde god da ste",
+            w_v2: "✅ Govorim nemački, ruski, engleski i persijski",
+            w_v3: "✅ Poznajem Beč i njegova preduzeća",
+            w_v4: "✅ I posle isporuke sam tu za vas",
+            s1: "Godina iskustva",
+            s2: "Dana rok isporuke",
+            s3: "Lična usluga",
+            p_title: "Jasne cene — bez iznenađenja",
+            p_sub: "Znate od početka koliko plaćate.",
+            b1: "✅ Lični prvi razgovor",
+            b2: "✅ Jednostranična web stranica",
+            b3: "✅ Optimizovano za mobilne uređaje",
+            b4: "✅ Gotovo za 7–10 dana",
+            b5: "✅ Svi pristupi se predaju vama",
+            b6: "❌ Bez tekuće podrške",
+            k1: "✅ 12 meseci podrške uključeno",
+            k2: "✅ Izmene i ažuriranja uključena",
+            anfragen: "Pošaljite upit",
+            empfohlen: "Preporučeno",
+            kon_title: "Razgovarajmo — bez obaveza",
+            kon_sub: "Javljam se u roku od 24 sata. Obećavam.",
+            kon_name: "Vaše ime",
+            kon_email: "Vaš email",
+            kon_tel: "Vaš broj telefona",
+            kon_select: "Koji paket vas zanima?",
+            kon_frage: "Imam pitanje",
+            kon_msg: "Ukratko mi recite o vašem poslovanju",
+            kon_btn: "Pošalji poruku →",
+            imp_btn: "Impressum",
+            daten_btn: "Privatnost",
+            typing: [
+                "Vaše preduzeće postoji. Ali da li vas ljudi mogu naći na internetu?",
+                "Nemate web stranicu? Vaši klijenti vas traže — i nalaze vašu konkurenciju.",
+                "Napraviću vam web stranicu — lično, brzo, pošteno."
+            ]
         }
-    });
-}, { threshold: 0.1 });
+    };
 
-fadeEls.forEach(el => scrollObserver.observe(el));
+    let currentLang = 'de';
+    let typingTexte = translations.de.typing;
+    let textIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    const h1 = document.querySelector('#hero h1');
 
-// АНИМАЦИЯ ЦИФР
-function animateNumber(el, target, suffix = '') {
-    let current = 0;
-    const step = target / 60;
-    const interval = setInterval(() => {
-        current += step;
-        if (current >= target) {
-            current = target;
-            clearInterval(interval);
-        }
-        el.textContent = Number.isInteger(target) ? Math.ceil(current) + suffix : current.toFixed(1) + suffix;
-    }, 25);
-}
+    function setLang(lang) {
+        currentLang = lang;
+        document.documentElement.lang = lang;
+        const t = translations[lang];
 
-const counterObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const el = entry.target;
-            const target = parseFloat(el.getAttribute('data-target'));
-            const suffix = el.getAttribute('data-suffix') || '';
-            animateNumber(el, target, suffix);
-            counterObserver.unobserve(el);
-        }
-    });
-}, { threshold: 0.5 });
+        // Обновляем текст
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (t[key]) el.textContent = t[key];
+        });
 
-// Добавляем data-target на цифры
-document.querySelectorAll('.rating-number').forEach(el => {
-    el.setAttribute('data-target', '4.4');
-    el.setAttribute('data-suffix', '');
-    el.textContent = '0';
-    counterObserver.observe(el);
-});
+        // Обновляем placeholder
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+            const key = el.getAttribute('data-i18n-placeholder');
+            if (t[key]) el.placeholder = t[key];
+        });
 
-document.querySelectorAll('.ueber-stat strong').forEach(el => {
-    const text = el.textContent.trim();
-    if (text === '4,4★') {
-        el.setAttribute('data-target', '4.4');
-        el.setAttribute('data-suffix', '★');
-        el.textContent = '0★';
-        counterObserver.observe(el);
-    } else if (text === '100%') {
-        el.setAttribute('data-target', '100');
-        el.setAttribute('data-suffix', '%');
-        el.textContent = '0%';
-        counterObserver.observe(el);
+        // Обновляем кнопки языка
+        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+        document.getElementById('lang-' + lang).classList.add('active');
+
+        // Обновляем печатающийся текст
+        typingTexte = t.typing;
+        textIndex = 0;
+        charIndex = 0;
+        isDeleting = false;
     }
-});
-</script>
+
+    // ПЕЧАТАЮЩИЙСЯ ТЕКСТ
+    function tippen() {
+        const aktuellerText = typingTexte[textIndex];
+        if (isDeleting) {
+            h1.textContent = aktuellerText.substring(0, charIndex - 1);
+            charIndex--;
+        } else {
+            h1.textContent = aktuellerText.substring(0, charIndex + 1);
+            charIndex++;
+        }
+        if (!isDeleting && charIndex === aktuellerText.length) {
+            setTimeout(() => isDeleting = true, 2000);
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            textIndex = (textIndex + 1) % typingTexte.length;
+        }
+        setTimeout(tippen, isDeleting ? 40 : 80);
+    }
+    tippen();
+
+    // БУРГЕР МЕНЮ
+    function toggleMenu() {
+        const nav = document.getElementById('nav-links');
+        const burger = document.getElementById('burger');
+        nav.classList.toggle('open');
+        burger.classList.toggle('active');
+    }
+
+    function closeMenu() {
+        const nav = document.getElementById('nav-links');
+        const burger = document.getElementById('burger');
+        nav.classList.remove('open');
+        burger.classList.remove('active');
+    }
+
+    // IMPRESSUM
+    function toggleImpressum() {
+        const box = document.getElementById('impressum-box');
+        const datenschutz = document.getElementById('datenschutz-box');
+        datenschutz.classList.remove('open');
+        box.classList.toggle('open');
+    }
+
+    function toggleDatenschutz() {
+        const box = document.getElementById('datenschutz-box');
+        const impressum = document.getElementById('impressum-box');
+        impressum.classList.remove('open');
+        box.classList.toggle('open');
+    }
+
+    // КНОПКА НАВЕРХ
+    const btn = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+        btn.style.display = window.scrollY > 400 ? 'block' : 'none';
+    });
+    btn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // СЧЁТЧИК
+    const zahlen = document.querySelectorAll('.stat-zahl');
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const zahl = entry.target;
+                const target = +zahl.getAttribute('data-target');
+                zahl.innerText = '0';
+                const interval = setInterval(() => {
+                    const current = +zahl.innerText;
+                    if (current < target) {
+                        zahl.innerText = Math.ceil(current + target / 50);
+                    } else {
+                        zahl.innerText = target;
+                        clearInterval(interval);
+                    }
+                }, 30);
+                counterObserver.unobserve(zahl);
+            }
+        });
+    }, { threshold: 0.5 });
+    zahlen.forEach(zahl => counterObserver.observe(zahl));
+
+    // ПЛАВНОЕ ПОЯВЛЕНИЕ
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.card, .grund, .preis-card, .stat, .garantie, .about-grid, .vorteile li').forEach(el => {
+        el.classList.add('fade-in');
+        observer.observe(el);
+    });
+
+    // ПОДСВЕТКА МЕНЮ
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+            if (window.scrollY >= section.offsetTop - 100) {
+                current = section.getAttribute('id');
+            }
+        });
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + current) {
+                link.classList.add('active');
+            }
+        });
+    });
+
+    // ФОРМА
+    const form = document.getElementById('kontakt-form');
+    const formSuccess = document.getElementById('form-success');
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const data = new FormData(form);
+        const res = await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
+        if (res.ok) {
+            form.style.display = 'none';
+            formSuccess.style.display = 'block';
+        } else {
+            alert('Fehler beim Senden. Bitte versuchen Sie es erneut.');
+        }
+    });
+
+    // ФОНОВЫЙ ЗВУК (волны — Web Audio API, без файлов)
+    let audioCtx = null;
+    let audioSource = null;
+    let audioGain = null;
+    let audioLfo = null;
+    let audioPlaying = false;
+
+    function toggleAudio() {
+        const btn = document.getElementById('audio-btn');
+        if (audioPlaying) {
+            audioGain.gain.setTargetAtTime(0, audioCtx.currentTime, 0.5);
+            setTimeout(() => {
+                audioSource.stop();
+                audioLfo.stop();
+                audioCtx.close();
+                audioCtx = null;
+                audioPlaying = false;
+            }, 800);
+            btn.textContent = '🔇';
+        } else {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            // Розовый шум — звук, похожий на волны
+            const bufferSize = audioCtx.sampleRate * 4;
+            const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+            const data = buffer.getChannelData(0);
+            let b0=0,b1=0,b2=0,b3=0,b4=0,b5=0,b6=0;
+            for (let i = 0; i < bufferSize; i++) {
+                const w = Math.random() * 2 - 1;
+                b0 = 0.99886*b0 + w*0.0555179;
+                b1 = 0.99332*b1 + w*0.0750759;
+                b2 = 0.96900*b2 + w*0.1538520;
+                b3 = 0.86650*b3 + w*0.3104856;
+                b4 = 0.55000*b4 + w*0.5329522;
+                b5 = -0.7616*b5 - w*0.0168980;
+                data[i] = (b0+b1+b2+b3+b4+b5+b6+w*0.5362)*0.11;
+                b6 = w * 0.115926;
+            }
+            audioSource = audioCtx.createBufferSource();
+            audioSource.buffer = buffer;
+            audioSource.loop = true;
+            // Фильтр низких частот — мягкий звук
+            const filter = audioCtx.createBiquadFilter();
+            filter.type = 'lowpass';
+            filter.frequency.value = 700;
+            // LFO — ритм волн (медленное нарастание и спад)
+            audioLfo = audioCtx.createOscillator();
+            const lfoGain = audioCtx.createGain();
+            audioLfo.frequency.value = 0.12;
+            lfoGain.gain.value = 0.25;
+            audioGain = audioCtx.createGain();
+            audioGain.gain.value = 0;
+            audioLfo.connect(lfoGain);
+            lfoGain.connect(audioGain.gain);
+            audioSource.connect(filter);
+            filter.connect(audioGain);
+            audioGain.connect(audioCtx.destination);
+            audioLfo.start();
+            audioSource.start();
+            // Плавное включение
+            audioGain.gain.setTargetAtTime(0.18, audioCtx.currentTime, 1.2);
+            audioPlaying = true;
+            btn.textContent = '🔊';
+        }
+    }
+
+    // ЧАСТИЦЫ
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    const particles = [];
+    for (let i = 0; i < 60; i++) {
+        particles.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            r: Math.random() * 2 + 1,
+            dx: (Math.random() - 0.5) * 0.5,
+            dy: (Math.random() - 0.5) * 0.5,
+            alpha: Math.random() * 0.5 + 0.2
+        });
+    }
+
+    function drawParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => {
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255, 107, 43, ${p.alpha})`;
+            ctx.fill();
+            p.x += p.dx;
+            p.y += p.dy;
+            if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+            if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+        });
+        requestAnimationFrame(drawParticles);
+    }
+    drawParticles();
+    </script>
 
 </body>
 </html>
